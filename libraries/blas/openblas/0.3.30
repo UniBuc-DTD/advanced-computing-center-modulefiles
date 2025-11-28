@@ -1,0 +1,37 @@
+#%Module1.0
+##
+## OpenBLAS 0.3.30 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up OpenBLAS 0.3.30 (Multithreaded, Dynamic Arch)"
+}
+
+module-whatis "Sets up OpenBLAS 0.3.30"
+
+set appname openblas
+set version 0.3.30
+set prefix "/mnt/modules/software/libraries/blas/$appname/$version"
+
+conflict $appname
+
+# This is to allow programs to find libopenblas.so at runtime
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Update Include Path (for compiling)
+prepend-path CPATH $prefix/include
+prepend-path C_INCLUDE_PATH $prefix/include
+
+# Update PkgConfig (for build systems like CMake/Meson)
+prepend-path PKG_CONFIG_PATH $prefix/lib/pkgconfig
+
+# Set convenience variables
+setenv OPENBLAS_ROOT $prefix
+setenv OPENBLAS_LIB $prefix/lib
+setenv OPENBLAS_INC $prefix/include
+
+## Optimization hints
+# Force OpenBLAS to use the number of threads allocated by Slurm (if applicable)
+if { [ info exists env(SLURM_CPUS_PER_TASK) ] } {
+    setenv OPENBLAS_NUM_THREADS $env(SLURM_CPUS_PER_TASK)
+}

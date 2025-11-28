@@ -1,0 +1,43 @@
+#%Module1.0
+##
+## Binutils 2.45.1 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tLoads GNU Binutils $version environment"
+    puts stderr "\tIncludes: ld, as, ar, nm, objdump, strings, strip, etc."
+    puts stderr "\tOptimized for native architecture."
+}
+
+module-whatis "Name: GNU Binutils"
+module-whatis "Version: 2.45.1"
+module-whatis "Description: Collection of binary tools"
+
+# Define paths
+set base /mnt/modules/software/tools/binutils/2.45.1
+set version 2.45.1
+
+# Prevent loading multiple versions of binutils at the same time
+conflict binutils
+
+# Set environment variables
+#   Executables (ld, as, objdump...)
+prepend-path PATH $base/bin
+
+#   Libraries (libbfd, libopcodes...)
+prepend-path LD_LIBRARY_PATH $base/lib
+prepend-path LIBRARY_PATH $base/lib
+
+#   Headers (bfd.h, etc.) - Useful if compiling GCC or other tools against this
+prepend-path CPATH $base/include
+prepend-path C_INCLUDE_PATH $base/include
+prepend-path CPLUS_INCLUDE_PATH $base/include
+
+#   Documentation (Man pages and Info)
+prepend-path MANPATH $base/share/man
+prepend-path INFOPATH $base/share/info
+
+#   PkgConfig (If available, allows other build systems to find libraries)
+if { [file exists $base/lib/pkgconfig] } {
+    prepend-path PKG_CONFIG_PATH $base/lib/pkgconfig
+}

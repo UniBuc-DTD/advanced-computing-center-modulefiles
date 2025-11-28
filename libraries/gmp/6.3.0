@@ -1,0 +1,32 @@
+#%Module1.0
+##
+## GMP 6.3.0 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up GNU Multiple Precision Arithmetic Library (GMP) 6.3.0"
+}
+
+module-whatis "Sets up GNU Multiple Precision Arithmetic Library (GMP) 6.3.0"
+
+set appname gmp
+set version 6.3.0
+set prefix "/mnt/modules/software/libraries/$appname/$version"
+
+conflict $appname
+
+prepend-path LIBRARY_PATH $prefix/lib
+# This is to allow programs to find libgmp.so at runtime
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Update include path (for compiling)
+prepend-path CPATH $prefix/include
+prepend-path C_INCLUDE_PATH $prefix/include
+
+# Update pkg-config path (for build systems like CMake/Meson)
+prepend-path PKG_CONFIG_PATH $prefix/lib/pkgconfig
+
+# Set convenience variables
+setenv GMP_ROOT $prefix
+setenv GMP_INC $prefix/include
+setenv GMP_LIB $prefix/lib

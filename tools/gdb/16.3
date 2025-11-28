@@ -1,0 +1,28 @@
+#%Module1.0
+##
+## GDB 15.1 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up GDB $version (GNU Debugger)"
+}
+
+module-whatis "Sets up GDB 16.3"
+
+set appname gdb
+set version 16.3
+set prefix "/mnt/modules/software/tools/$appname/$version"
+
+conflict $appname
+
+prereq tools/python/3.13.9
+
+# 1. Path to binary
+prepend-path PATH $prefix/bin
+
+# 2. Path to libraries (GDB installs some libs, though rarely linked against)
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# 3. Man and Info pages
+prepend-path MANPATH $prefix/share/man
+prepend-path INFOPATH $prefix/share/info

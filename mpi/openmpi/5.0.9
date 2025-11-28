@@ -1,0 +1,37 @@
+#%Module1.0
+##
+## OpenMPI 5.0.9 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tLoads OpenMPI 5.0.9 with UCX (InfiniBand) Support"
+    puts stderr "\tCompiled with GCC and optimized for native architecture."
+}
+
+module-whatis "Name: OpenMPI"
+module-whatis "Version: 5.0.9"
+module-whatis "Description: Open Source High Performance MPI"
+
+# Define paths
+set base /mnt/modules/software/mpi/openmpi/5.0.9
+set ucx_base /mnt/modules/software/libraries/ucx/1.19.0
+
+# Set environment variables
+setenv MPI_HOME $base
+setenv OMPI_DIR $base
+
+setenv OMPI_MCA_pml ucx
+setenv OMPI_MCA_btl ^vader,tcp,openib
+
+# Prepend to Paths
+prepend-path PATH $base/bin
+prepend-path LD_LIBRARY_PATH $base/lib
+prepend-path MANPATH $base/share/man
+prepend-path PKG_CONFIG_PATH $base/lib/pkgconfig
+
+# C/C++ include paths
+prepend-path C_INCLUDE_PATH $base/include
+prepend-path CPLUS_INCLUDE_PATH $base/include
+
+# Add UCX libs to path so OpenMPI can find the transport layer
+prepend-path LD_LIBRARY_PATH $ucx_base/lib
