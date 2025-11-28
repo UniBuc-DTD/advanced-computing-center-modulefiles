@@ -1,0 +1,6 @@
+# Auotmatically detect text files and store them using LF line endings
+* text=auto eol=lf
+
+libraries/** linguist-language=Tcl
+mpi/** linguist-language=Tcl
+tools/** linguist-language=Tcl
