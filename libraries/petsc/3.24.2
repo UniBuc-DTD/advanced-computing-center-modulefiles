@@ -1,0 +1,31 @@
+#%Module1.0
+##
+## PETSc 3.24.2 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up PETSc 3.24.2"
+}
+
+module-whatis "Sets up PETSc 3.24.2"
+
+set appname petsc
+set version 3.24.2
+set prefix "/mnt/modules/software/libraries/$appname/$version"
+
+conflict libraries/$appname
+
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Update include path (for compiling)
+prepend-path CPATH $prefix/include
+prepend-path C_INCLUDE_PATH $prefix/include
+
+# Update pkg-config path (for build systems like CMake/Meson)
+prepend-path PKG_CONFIG_PATH $prefix/lib/pkgconfig
+
+# Set convenience variables
+setenv PETSC_ROOT $prefix
+setenv PETSC_INC $prefix/include
+setenv PETSC_LIB $prefix/lib
