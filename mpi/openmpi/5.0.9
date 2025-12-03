@@ -16,6 +16,9 @@ module-whatis "Description: Open Source High Performance MPI"
 set base /mnt/modules/software/mpi/openmpi/5.0.9
 set ucx_base /mnt/modules/software/libraries/ucx/1.19.0
 
+# Prevent loading multiple MPI implementations at once
+conflicts mpi
+
 # Set environment variables
 setenv MPI_HOME $base
 setenv OMPI_DIR $base

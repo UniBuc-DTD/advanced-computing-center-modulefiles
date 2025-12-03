@@ -13,7 +13,7 @@ set appname mpfr
 set version 4.2.2
 set prefix "/mnt/modules/software/libraries/$appname/$version"
 
-conflict $appname
+conflict libraries/$appname
 
 prepend-path LIBRARY_PATH $prefix/lib
 # This is to allow programs to find libmpfr.so at runtime

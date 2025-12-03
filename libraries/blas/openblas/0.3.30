@@ -13,7 +13,7 @@ set appname openblas
 set version 0.3.30
 set prefix "/mnt/modules/software/libraries/blas/$appname/$version"
 
-conflict $appname
+conflict livraries/blas
 
 # This is to allow programs to find libopenblas.so at runtime
 prepend-path LD_LIBRARY_PATH $prefix/lib

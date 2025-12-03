@@ -13,7 +13,7 @@ set appname gmp
 set version 6.3.0
 set prefix "/mnt/modules/software/libraries/$appname/$version"
 
-conflict $appname
+conflict libraries/$appname
 
 prepend-path LIBRARY_PATH $prefix/lib
 # This is to allow programs to find libgmp.so at runtime
