@@ -1,0 +1,35 @@
+#%Module1.0
+##
+## ROOT 6.36.06 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "ROOT Data Analysis Framework (v6.36.06)"
+}
+
+module-whatis "Description: ROOT Data Analysis Framework"
+module-whatis "Version: 6.36.06"
+module-whatis "URL: https://root.cern"
+
+set appname root
+set version 6.36.06
+set prefix "/mnt/modules/software/libraries/$appname/$version"
+
+# Prevent loading two versions of ROOT simultaneously
+conflict libraries/$appname
+
+# Set the critical ROOTSYS variable
+setenv ROOTSYS $prefix
+
+# Prepend Binary and Library paths
+prepend-path PATH $prefix/bin
+prepend-path LD_LIBRARY_PATH $prefix/lib
+prepend-path MANPATH $prefix/man
+
+prepend-path PYTHONPATH $prefix/lib
+
+# Allow users to compile against ROOT using CMake
+prepend-path CMAKE_PREFIX_PATH $prefix
+
+# Jupyter Notebook integration
+prepend-path JUPYTER_PATH $prefix/etc/notebook

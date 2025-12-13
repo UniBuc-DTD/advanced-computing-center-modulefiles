@@ -1,0 +1,35 @@
+#%Module1.0
+##
+## GCC 15.2.0 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "Sets up environment for GCC 15.2.0 (C, C++, Fortran)"
+}
+
+module-whatis "Sets up GCC 15.2.0"
+
+set appname gcc
+set version 15.2.0
+set prefix "/mnt/modules/software/tools/$appname/$version"
+
+conflict tools/$appname
+
+# Binaries (gcc, g++, gfortran)
+prepend-path PATH $prefix/bin
+
+# Libraries (libstdc++, libgfortran, libgomp)
+# Essential so compiled programs find the newer libraries at runtime
+prepend-path LD_LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib64
+
+# Manual Pages
+prepend-path MANPATH $prefix/share/man
+
+# Compiler Environment Variables
+# Many build systems (Makefiles, CMake) look for these
+setenv CC gcc
+setenv CXX g++
+setenv FC gfortran
+setenv F77 gfortran
+setenv F90 gfortran

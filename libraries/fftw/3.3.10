@@ -1,0 +1,29 @@
+#%Module1.0
+##
+## FFTW 3.3.10 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up Fastest Fourier Transform in the West (FFTW) 3.3.10"
+}
+
+module-whatis "Sets up Fastest Fourier Transform in the West (FFTW) $version"
+
+set appname fftw
+set version 3.3.10
+set prefix "/mnt/modules/software/libraries/$appname/$version"
+
+conflict libraries/$appname
+
+prepend-path CPATH $prefix/include
+prepend-path C_INCLUDE_PATH $prefix/include
+
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+prepend-path MANPATH $base/share/man
+prepend-path PKG_CONFIG_PATH $prefix/lib/pkgconfig
+
+setenv FFTW_ROOT $prefix
+setenv FFTW_INC $prefix/include
+setenv FFTW_LIB $prefix/lib

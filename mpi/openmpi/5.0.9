@@ -17,7 +17,7 @@ set base /mnt/modules/software/mpi/openmpi/5.0.9
 set ucx_base /mnt/modules/software/libraries/ucx/1.19.0
 
 # Prevent loading multiple MPI implementations at once
-conflicts mpi
+conflict mpi
 
 # Set environment variables
 setenv MPI_HOME $base
