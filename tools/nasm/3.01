@@ -1,0 +1,22 @@
+#%Module1.0
+##
+## NASM 3.01 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up NASM $version (Netwide Assembler)"
+}
+
+module-whatis "Sets up NASM 3.01"
+
+set appname nasm
+set version 3.01
+set prefix "/mnt/modules/software/tools/$appname/$version"
+
+conflict tools/$appname
+
+# Binaries
+prepend-path PATH $prefix/bin
+
+# Man pages
+prepend-path MANPATH $prefix/share/man
