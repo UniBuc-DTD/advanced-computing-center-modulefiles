@@ -1,0 +1,36 @@
+#%Module1.0#####################################################################
+##
+## CUDA 13.0.2 Modulefile
+##
+
+proc ModulesHelp { } {
+    global version
+    puts stderr "\tAdds NVIDIA CUDA $version to your environment variables"
+}
+
+set version "13.0.2"
+set base "/mnt/modules/software/cuda/$version"
+
+module-whatis "Loads the NVIDIA CUDA $version Toolkit"
+
+# Check for conflicts (prevent loading two different versions of the CUDA toolkit at once)
+conflict cuda
+
+# Set environment variables
+setenv CUDA_HOME $base
+setenv CUDA_ROOT $base
+
+# Prepend to PATH so 'nvcc' is found
+prepend-path PATH $base/bin
+
+# Prepend to LD_LIBRARY_PATH so binaries find the libs at runtime
+prepend-path LD_LIBRARY_PATH $base/lib64
+prepend-path LD_LIBRARY_PATH $base/extras/CUPTI/lib64
+
+# Prepend to LIBRARY_PATH (used by gcc/g++ during linking)
+prepend-path LIBRARY_PATH $base/lib64
+
+# Prepend to CPATH/INCLUDE path (so #include <cuda.h> works)
+prepend-path CPATH $base/include
+prepend-path C_INCLUDE_PATH $base/include
+prepend-path CPLUS_INCLUDE_PATH $base/include
