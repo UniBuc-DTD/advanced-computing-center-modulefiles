@@ -1,0 +1,33 @@
+#%Module1.0
+##
+## MPICH 4.3.2 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tLoads MPICH 4.3.2 with UCX (InfiniBand) Support"
+    puts stderr "\tCompiled with GCC and optimized for native architecture."
+}
+
+module-whatis "Name: MPICH"
+module-whatis "Version: 4.3.2"
+module-whatis "Description: High Performance MPI implementation from Argonne National Laboratory"
+
+# Define paths
+set base /mnt/modules/software/mpi/mpich/4.3.2
+
+# Prevent loading multiple MPI implementations at once
+conflict mpi
+
+# Set environment variables
+setenv MPI_HOME $base
+setenv MPICH_DIR $base
+
+# Prepend to Paths
+prepend-path PATH $base/bin
+prepend-path LD_LIBRARY_PATH $base/lib
+prepend-path MANPATH $base/share/man
+prepend-path PKG_CONFIG_PATH $base/lib/pkgconfig
+
+# C/C++ include paths
+prepend-path C_INCLUDE_PATH $base/include
+prepend-path CPLUS_INCLUDE_PATH $base/include
