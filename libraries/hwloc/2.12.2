@@ -1,0 +1,34 @@
+#%Module1.0
+##
+## hwloc 2.12.2 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up hwloc 2.12.2"
+}
+
+module-whatis "Sets up hwloc 2.12.2"
+
+set appname hwloc
+set version 2.12.2
+set prefix "/mnt/modules/software/libraries/$appname/$version"
+
+conflict libraries/$appname
+
+prepend-path PATH $prefix/bin
+
+# Update include path (for compiling)
+prepend-path CPATH $prefix/include
+prepend-path C_INCLUDE_PATH $prefix/include
+
+# Update library path (for linking)
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Update pkg-config path (for build systems like CMake/Meson)
+prepend-path PKG_CONFIG_PATH $prefix/lib/pkgconfig
+
+# Set convenience variables
+setenv UCX_ROOT $prefix
+setenv UCX_INC $prefix/include
+setenv UCX_LIB $prefix/lib
