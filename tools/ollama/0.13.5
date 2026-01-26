@@ -1,0 +1,19 @@
+#%Module1.0
+##
+## ollama 0.13.5 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "ollama allows you to run large language models locally"
+}
+
+module-whatis "ollama 0.13.5 - Large Language Model (LLM) runner"
+
+set appname ollama
+set version 0.13.5
+set prefix "/mnt/modules/software/tools/$appname/$version"
+
+conflict tools/$appname
+
+# Binary
+prepend-path PATH "$prefix/bin"
