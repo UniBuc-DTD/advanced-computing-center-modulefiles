@@ -1,0 +1,25 @@
+#%Module1.0
+##
+## FastJet 3.5.1 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up FastJet 3.5.1"
+}
+
+module-whatis "Sets up FastJet 3.5.1"
+
+set version 3.5.1
+set prefix "/mnt/modules/software/libraries/hep/fastjet/$version"
+
+conflict libraries/hep/fastjet
+
+# Add `fastjet-config` to path
+prepend-path PATH $prefix/bin
+
+# Update include path (for compiling)
+prepend-path CPLUS_INCLUDE_PATH $prefix/include
+
+# Update library path (for linking)
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib

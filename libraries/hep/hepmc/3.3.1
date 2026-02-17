@@ -1,0 +1,29 @@
+#%Module1.0
+##
+## HepMC 3.3.1 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up HepMC 3.3.1"
+}
+
+module-whatis "Sets up HepMC 3.3.1"
+
+set version 3.3.1
+set prefix "/mnt/modules/software/libraries/hep/hepmc/$version"
+
+conflict libraries/hep/hepmc/3
+
+module load tools/python/3.14.3
+
+prepend-path PATH $prefix/bin
+
+# Update include path (for compiling)
+prepend-path CPLUS_INCLUDE_PATH $prefix/include
+
+# Update library path (for linking)
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Update Python path
+prepend-path PYTHONPATH $prefix/lib/python3.14/site-packages

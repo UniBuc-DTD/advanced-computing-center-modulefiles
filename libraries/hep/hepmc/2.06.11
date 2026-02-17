@@ -1,0 +1,22 @@
+#%Module1.0
+##
+## HepMC 2.06.11 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up HepMC 2.06.11"
+}
+
+module-whatis "Sets up HepMC 2.06.11"
+
+set version 2.06.11
+set prefix "/mnt/modules/software/libraries/hep/hepmc/$version"
+
+conflict libraries/hep/hepmc/2
+
+# Update include path (for compiling)
+prepend-path CPLUS_INCLUDE_PATH $prefix/include
+
+# Update library path (for linking)
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib

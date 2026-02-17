@@ -1,0 +1,23 @@
+#%Module1.0
+##
+## vdt 0.4.6 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up vdt 0.4.6"
+}
+
+module-whatis "Sets up vdt 0.4.6"
+
+set version 0.4.6
+set prefix "/mnt/modules/software/libraries/hep/vdt/$version"
+
+conflict libraries/hep/vdt
+
+# Update include path (for compiling)
+prepend-path CPATH $prefix/include
+
+# Update library path (for linking)
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib
+

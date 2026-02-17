@@ -1,0 +1,31 @@
+#%Module1.0
+##
+## MadAnalysis5 1.11.0 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "MadAnalysis 1.11.0 phenomological data analysis package"
+}
+
+module-whatis "Name: MadAnalysis"
+module-whatis "Version: 1.11.0"
+module-whatis "Description: framework for phenomenological investigations at particle colliders."
+
+set prefix /mnt/modules/software/tools/hep/madanalysis/1.11.0
+
+# We need Python
+prereq tools/python/3.14
+
+# Optional dependencies
+prereq --optional libraries/hep/fastjet
+prereq --optional libraries/root
+prereq --optional tools/hep/delphes
+
+# Prevent loading multiple MadAnalysis versions at once
+conflict tools/hep/madanalysis
+
+# Add the binaries to PATH
+prepend-path PATH $prefix/bin
+
+# Add custom venv with MG/MA-specific packages to PYTHONPATH
+prepend-path PYTHONPATH /mnt/modules/software/libraries/hep/python-venv/lib/python3.14/site-packages

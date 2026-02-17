@@ -1,0 +1,25 @@
+#%Module1.0
+##
+## eMELA 1.0.1 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up eMELA 1.0.1"
+}
+
+module-whatis "Sets up eMELA 1.0.1"
+
+set version 1.0.1
+set prefix "/mnt/modules/software/libraries/hep/emela/$version"
+
+conflict libraries/hep/emela
+
+# Add `eMELA-config` to path
+prepend-path PATH $prefix/bin
+
+# Update include path (for compiling)
+prepend-path CPLUS_INCLUDE_PATH $prefix/include
+
+# Update library path (for linking)
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib

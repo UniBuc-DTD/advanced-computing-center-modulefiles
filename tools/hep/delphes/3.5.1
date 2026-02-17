@@ -1,0 +1,27 @@
+#%Module1.0
+##
+## Delphes 3.5.1 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "Delphes 3.5.1 detector simulation toolkit"
+}
+
+module-whatis "Name: Delphes"
+module-whatis "Version: 3.5.1"
+module-whatis "Description: fast simulator of detector from a particle collider."
+
+set prefix /mnt/modules/software/tools/hep/delphes/3.5.1
+
+# Prevent loading multiple Delphes versions at once
+conflict tools/hep/delphes
+
+# Add the binaries to PATH
+prepend-path PATH $prefix/bin
+
+# Update include path (for compiling)
+prepend-path CPLUS_INCLUDE_PATH $prefix/include
+
+# Update library path (for linking)
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib

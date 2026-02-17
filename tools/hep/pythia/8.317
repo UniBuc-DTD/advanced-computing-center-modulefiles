@@ -1,0 +1,32 @@
+#%Module1.0
+##
+## Pythia 8.317 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "Pythia 8.317 Monte Carlo simulation tool for HEP events."
+}
+
+module-whatis "Name: Pythia"
+module-whatis "Version: 8.317"
+module-whatis "Description: Monte Carlo simulator for particle physics."
+
+set prefix /mnt/modules/software/tools/hep/pythia/8.317
+
+# Prevent loading multiple Pythia versions at once
+conflict tools/hep/pythia
+
+# Add the binaries to PATH
+prepend-path PATH $prefix/bin
+
+# Update include path (for compiling)
+prepend-path CPLUS_INCLUDE_PATH $prefix/include
+
+# Update library path (for linking)
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Help Pythia find its XML documents
+pushenv PYTHIA8DATA $prefix/share/Pythia8/xmldoc
+pushenv PYTHIA8_XMLDOC_DIR $prefix/share/Pythia8/xmldoc
+

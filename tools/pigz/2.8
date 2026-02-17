@@ -1,0 +1,19 @@
+#%Module1.0
+##
+## pigz 2.8 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up pigz $version (parallel gzip implementation)"
+}
+
+module-whatis "Sets up pigz 2.8"
+
+set appname pigz
+set version 2.8
+set prefix "/mnt/modules/software/tools/$appname/$version"
+
+conflict tools/$appname
+
+# Binaries
+prepend-path PATH $prefix/bin
