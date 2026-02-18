@@ -24,10 +24,9 @@ prereq --optional libraries/hep/lhapdf/6.5.5
 # Optional, but speeds up compression
 prereq --optional tools/pigz
 
-# Also request Pythia, Delphes and MadAnalysis
+# Also request Pythia and Delphes
 prereq --optional tools/hep/pythia
 prereq --optional tools/hep/delphes
-prereq --optional tools/hep/madanalysis
 
 # Prevent loading multiple MadGraph versions at once
 conflict tools/hep/madgraph
