@@ -16,6 +16,13 @@ set prefix /mnt/modules/software/tools/hep/delphes/3.5.1
 # We need TBB
 prereq intel/tbb
 
+# Some Delphes binaries require HepMC2 or HepMC3
+prereq libraries/hep/hepmc/2
+prereq libraries/hep/hepmc/3
+
+# Most Delphes binaries require libpythia8
+prereq tools/hep/pythia
+
 # Prevent loading multiple Delphes versions at once
 conflict tools/hep/delphes
 
