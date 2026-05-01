@@ -1,0 +1,22 @@
+#%Module1.0
+##
+## gnuplot 5.2.6 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "Sets up environment for gnuplot 5.2.6"
+}
+
+module-whatis "Sets up gnuplot 5.2.6"
+
+set appname gnuplot
+set version 5.2.6
+set prefix "/mnt/modules/software/tools/$appname/$version"
+
+conflict tools/$appname
+
+# Binaries
+prepend-path PATH $prefix/bin
+
+# Manual Pages
+prepend-path MANPATH $prefix/share/man

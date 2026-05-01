@@ -1,0 +1,20 @@
+#%Module1.0
+##
+## cmake 4.3.2 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "Sets up environment for cmake 4.3.2"
+}
+
+module-whatis "Sets up cmake 4.3.2"
+
+set appname cmake
+set version 4.3.2
+set prefix "/mnt/modules/software/tools/$appname/$version"
+
+conflict tools/$appname
+
+# Binaries
+prepend-path PATH $prefix/bin
+

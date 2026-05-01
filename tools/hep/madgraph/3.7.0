@@ -22,6 +22,9 @@ prereq --optional libraries/hep/fastjet/3.5.1
 prereq --optional libraries/hep/emela/1.0.1
 prereq --optional libraries/hep/lhapdf/6.5.5
 
+# Optional, used for some plotting and analysis features
+prereq --optional tools/gnuplot
+
 # Optional, but speeds up compression
 prereq --optional tools/pigz
 
