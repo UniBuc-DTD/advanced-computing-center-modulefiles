@@ -13,6 +13,9 @@ module-whatis "Description: fast simulator of detector from a particle collider.
 
 set prefix /mnt/modules/software/tools/hep/delphes/3.5.1
 
+# We need TBB
+prereq intel/tbb
+
 # Prevent loading multiple Delphes versions at once
 conflict tools/hep/delphes
 
