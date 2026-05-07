@@ -15,6 +15,8 @@ set prefix "/mnt/modules/software/tools/$appname/$version"
 
 conflict tools/$appname
 
+prereq --optional tools/binutils/2.46.0
+
 # Binaries (gcc, g++, gfortran)
 prepend-path PATH $prefix/bin
 
