@@ -1,0 +1,36 @@
+#%Module1.0
+##
+## curl 8.20.0 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up curl 8.20.0"
+}
+
+module-whatis "Sets up curl 8.20.0"
+
+set appname curl
+set version 8.20.0
+set prefix "/mnt/modules/software/libraries/$appname/$version"
+
+conflict libraries/$appname
+
+# Binary path
+prepend-path PATH $prefix/bin
+
+# Update include path (for compiling)
+prepend-path CPATH $prefix/include
+prepend-path C_INCLUDE_PATH $prefix/include
+
+# Update library path (for linking)
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# CMake path
+prepend-path CMAKE_PREFIX_PATH "$prefix"
+
+# Package config path
+prepend-path PKG_CONFIG_PATH "$prefix/lib/pkgconfig"
+
+# Manual files path
+prepend-path MANPATH "$prefix/share/man"

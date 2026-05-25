@@ -1,0 +1,36 @@
+#%Module1.0
+##
+## NetCDF 4.10.0 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up NetCDF version 4.10.0"
+}
+
+module-whatis "NetCDF: Network Common Data Form C library"
+
+set appname netcdf-c
+set version 4.10.0
+set prefix "/mnt/modules/software/libraries/$appname/$version"
+
+conflict libraries/$appname
+
+# Binaries path
+prepend-path PATH $prefix/bin
+
+# Library path
+prepend-path LIBRARY_PATH $prefix/lib
+# Runtime library path
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Include files path
+prepend-path CPATH $prefix/include
+
+# Manual files
+prepend-path MANPATH $prefix/share/man
+
+# CMake path
+prepend-path CMAKE_PREFIX_PATH $prefix
+
+# `pkg-config` files
+prepend-path PKG_CONFIG_PATH $prefix/lib/pkgconfig

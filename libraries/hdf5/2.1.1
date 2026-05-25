@@ -1,0 +1,36 @@
+#%Module1.0
+##
+## HDF5 2.1.1 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up HDF5 version 2.1.1"
+}
+
+module-whatis "HDF5: Hierarchical Data Format 5 library"
+
+set appname hdf5
+set version 2.1.1
+set prefix "/mnt/modules/software/libraries/$appname/$version"
+
+conflict libraries/$appname
+
+setenv HDF5_DIR $prefix
+setenv HDF5_HOME $prefix
+
+# Binaries path
+prepend-path PATH $prefix/bin
+
+# Library path
+prepend-path LIBRARY_PATH $prefix/lib
+# Runtime library path
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Include files path
+prepend-path CPATH $prefix/include
+
+# Manual files
+prepend-path MANPATH $prefix/share/man
+
+# `pkg-config` files
+prepend-path PKG_CONFIG_PATH $prefix/lib/pkgconfig
