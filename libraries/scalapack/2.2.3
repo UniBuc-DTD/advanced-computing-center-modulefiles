@@ -1,0 +1,25 @@
+#%Module1.0
+##
+## ScaLAPACK 2.2.3 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "ScaLAPACK v2.2.3"
+}
+
+module-whatis "Description: ScaLAPACK - Scalable linear algebra package"
+module-whatis "Version: 2.2.3"
+
+set appname scalapack
+set version 2.2.3
+set prefix "/mnt/modules/software/libraries/$appname/$version"
+
+# Prevent loading two versions of the library simultaneously
+conflict libraries/$appname
+
+# Prepend library path
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Allow users to find ScaLAPACK using CMake
+prepend-path CMAKE_PREFIX_PATH $prefix
