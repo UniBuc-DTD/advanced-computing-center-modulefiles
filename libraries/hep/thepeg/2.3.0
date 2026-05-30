@@ -1,0 +1,27 @@
+#%Module1.0
+##
+## ThePEG 2.3.0 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up ThePEG 2.3.0"
+}
+
+module-whatis "Sets up Toolkit for High Energy Physics Event Generation (ThePEG) version 2.3.0"
+
+set appname thepeg
+set version 2.3.0
+set prefix "/mnt/modules/software/libraries/hep/$appname/$version"
+
+conflict libraries/hep/$appname
+
+# Add binaries to path
+prepend-path PATH $prefix/bin
+
+# Update include path
+prepend-path CPATH $prefix/include
+prepend-path CPLUS_INCLUDE_PATH $prefix/include
+
+# Update library paths
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib

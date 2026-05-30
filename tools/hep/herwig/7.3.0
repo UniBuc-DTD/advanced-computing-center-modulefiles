@@ -1,0 +1,30 @@
+#%Module1.0
+##
+## Herwig 7.3.0 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "Herwig multi-purpose particle physics event generator version 7.3.0"
+}
+
+module-whatis "Name: Herwig"
+module-whatis "Version: 7.3.0"
+module-whatis "Description: multi-purpose particle physics event generator."
+
+set prefix /mnt/modules/software/tools/hep/herwig/7.3.0
+
+# Prevent loading multiple Herwig versions at once
+conflict tools/hep/herwig
+
+# Add the binaries to PATH
+prepend-path PATH $prefix/bin
+
+# Update include path (for compiling)
+prepend-path CPLUS_INCLUDE_PATH $prefix/include
+
+# Update library path (for linking)
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Convenience variables
+setenv HERWIG_PATH $prefix
