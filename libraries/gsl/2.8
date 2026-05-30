@@ -1,0 +1,38 @@
+#%Module1.0
+##
+## GSL 2.8 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up GNU Scientific Library (GSL) version 2.8"
+}
+
+module-whatis "Sets up GSL 2.8"
+
+set appname gsl
+set version 2.8
+set prefix "/mnt/modules/software/libraries/$appname/$version"
+
+conflict libraries/$appname
+
+# Add command-line tools to PATH
+prepend-path PATH $prefix/bin
+
+# Update include path
+prepend-path CPATH $prefix/include
+prepend-path C_INCLUDE_PATH $prefix/include
+
+# Update library linker paths
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Update pkg-config path (for build systems like CMake/Meson)
+prepend-path PKG_CONFIG_PATH $prefix/lib/pkgconfig
+
+# Update manual path
+prepend-path MANPATH $prefix/share/man
+
+# Set convenience variables
+setenv GSL_ROOT $prefix
+setenv GSL_INC $prefix/include
+setenv GSL_LIB $prefix/lib
