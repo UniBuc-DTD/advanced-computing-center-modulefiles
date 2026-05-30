@@ -1,0 +1,23 @@
+#%Module1.0
+##
+## Boost 1.91.0 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up Boost library version 1.91.0"
+}
+
+module-whatis "Sets up Boost 1.91.0"
+
+set appname boost
+set version 1.91.0
+set prefix "/mnt/modules/software/libraries/$appname/$version"
+
+conflict libraries/$appname
+
+# Update C++ include path
+prepend-path CPLUS_INCLUDE_PATH $prefix/include
+
+# Update library linker paths
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib
