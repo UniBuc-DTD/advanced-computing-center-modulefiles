@@ -1,0 +1,41 @@
+#%Module1.0
+##
+## ffmpeg 8.1.1 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tLoads ffmpeg 8.1.1, built with optimizations"
+}
+
+module-whatis "Name: ffmpeg"
+module-whatis "Version: 8.1.1"
+module-whatis "Description: complete, cross-platform solution to record, convert and stream audio and video."
+
+# Define paths
+set libname ffmpeg
+set version 8.1.1
+set prefix "/mnt/modules/software/libraries/$libname/$version"
+
+# Prevent loading multiple versions of this library at the same time
+conflict libraries/$libname
+
+# We need libx264 for H.264 support
+prereq --optional libraries/x264
+
+# Binaries directory
+prepend-path PATH $prefix/bin
+
+# Include directories
+prepend-path CPATH $prefix/include
+prepend-path C_INCLUDE_PATH $prefix/include
+prepend-path CPLUS_INCLUDE_PATH $prefix/include
+
+# Libraries
+prepend-path LD_LIBRARY_PATH $prefix/lib
+prepend-path LIBRARY_PATH $prefix/lib
+
+# Documentation (manual pages)
+prepend-path MANPATH $prefix/share/man
+
+# PkgConfig (allows other build systems to find libraries)
+prepend-path PKG_CONFIG_PATH $prefix/lib/pkgconfig
