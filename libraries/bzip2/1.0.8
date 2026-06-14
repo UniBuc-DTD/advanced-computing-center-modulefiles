@@ -1,0 +1,24 @@
+#%Module1.0
+##
+## bzip2 1.0.8 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up bzip2 compression library 1.0.8"
+}
+
+module-whatis "Sets up bzip2 compression library, version 1.0.8"
+
+set libname bzip2
+set version 1.0.8
+set prefix "/mnt/modules/software/libraries/$libname/$version"
+
+conflict libraries/$libname
+
+# Update include path (for compiling)
+prepend-path CPATH $prefix/include
+prepend-path C_INCLUDE_PATH $prefix/include
+
+# Update library path (for linking)
+prepend-path LIBRARY_PATH $prefix/lib
+prepend-path LD_LIBRARY_PATH $prefix/lib

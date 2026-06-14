@@ -21,3 +21,6 @@ prepend-path CPLUS_INCLUDE_PATH $prefix/include
 # Update library linker paths
 prepend-path LIBRARY_PATH $prefix/lib
 prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Update CMake path
+prepend-path CMAKE_PREFIX_PATH $prefix

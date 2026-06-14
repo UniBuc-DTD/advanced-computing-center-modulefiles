@@ -1,0 +1,33 @@
+#%Module1.0
+##
+## Poppler 26.06.0 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up Poppler version 26.06.0"
+}
+
+module-whatis "Poppler PDF rendering library, version 26.06.0"
+
+set libname poppler
+set version 26.06.0
+set prefix "/mnt/modules/software/libraries/$libname/$version"
+
+conflict libraries/$libname
+
+# Binaries path
+prepend-path PATH $prefix/bin
+
+# Library path
+prepend-path LIBRARY_PATH $prefix/lib
+# Runtime library path
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Include files path
+prepend-path CPATH $prefix/include
+
+# Manual files
+prepend-path MANPATH $prefix/share/man
+
+# `pkg-config` files
+prepend-path PKG_CONFIG_PATH $prefix/lib/pkgconfig
