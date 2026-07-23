@@ -1,0 +1,42 @@
+#%Module1.0
+##
+## MadGraph5 3.7.2 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "MadGraph5 3.7.2 - Framework for SM and BSM phenomenology."
+}
+
+module-whatis "Name: MadGraph"
+module-whatis "Version: 3.7.2"
+module-whatis "Description: Tool for SM and BSM phenomenology."
+
+set prefix /mnt/modules/software/tools/hep/madgraph/3.7.2
+
+# We need Python
+prereq tools/python/3.14
+
+# MadGraph is usually used together with these libraries
+prereq --optional libraries/root/6.36.06
+prereq --optional libraries/hep/fastjet/3.5.1
+prereq --optional libraries/hep/emela/1.0.1
+prereq --optional libraries/hep/lhapdf/6.5.5
+
+# Optional, used for some plotting and analysis features
+prereq --optional tools/gnuplot
+
+# Optional, but speeds up compression
+prereq --optional tools/pigz
+
+# Also request Pythia and Delphes
+prereq --optional tools/hep/pythia
+prereq --optional tools/hep/delphes
+
+# Prevent loading multiple MadGraph versions at once
+conflict tools/hep/madgraph
+
+# Add the binaries to PATH
+prepend-path PATH $prefix/bin
+
+# Add custom venv with MG/MA-specific packages to PYTHONPATH
+prepend-path PYTHONPATH /mnt/modules/software/libraries/hep/python-venv/lib/python3.14/site-packages
