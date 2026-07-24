@@ -15,8 +15,13 @@ set prefix "/mnt/modules/software/tools/$appname/$version"
 
 conflict tools/$appname
 
+prereq tools/ghostscript/10.07.1
+
 # Binaries
 prepend-path PATH $prefix/bin
 
 # Manual Pages
 prepend-path MANPATH $prefix/share/man
+
+# gnuplot needs to know where it can find its PostScript command files
+setenv GNUPLOT_PS_DIR "$prefix/share/gnuplot/5.2/PostScript"

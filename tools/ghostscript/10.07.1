@@ -1,0 +1,22 @@
+#%Module1.0
+##
+## GhostScript 10.07.1 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "Sets up environment for GhostScript 10.07.1"
+}
+
+module-whatis "Sets up GhostScript 10.07.1"
+
+set appname ghostscript
+set version 10.07.1
+set prefix "/mnt/modules/software/tools/$appname/$version"
+
+conflict tools/$appname
+
+# Binaries
+prepend-path PATH $prefix/bin
+
+# Man pages
+prepend-path MANPATH $prefix/share/man
