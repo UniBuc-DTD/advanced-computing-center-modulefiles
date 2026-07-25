@@ -1,0 +1,29 @@
+#%Module1.0
+##
+## Delphes parallel Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "Delphes parallel wrapper"
+}
+
+module-whatis "Name: delphes-parallel"
+module-whatis "Version: latest"
+module-whatis "Description: parallelization wrapper for Delphes detector simulation framework."
+
+set prefix /mnt/modules/software/tools/hep/delphes-parallel/latest
+
+# We need the original Delphes
+prereq tools/hep/delphes
+
+# Prevent loading multiple delphes-parallel versions at once
+conflict tools/hep/delphes-parallel
+
+# Save the path to the original Delphes binary
+setenv DELPHES_HEPMC2_PATH [ exec /usr/bin/which DelphesHepMC2 ]
+
+# Reasonable parallelization
+setenv DELPHES_PARALLEL_NUM_SHARDS 64
+
+# Add the binaries to PATH
+prepend-path PATH $prefix/bin
