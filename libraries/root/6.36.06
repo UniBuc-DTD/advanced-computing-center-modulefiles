@@ -18,6 +18,9 @@ set prefix "/mnt/modules/software/libraries/$appname/$version"
 # Prevent loading two versions of ROOT simultaneously
 conflict libraries/$appname
 
+# We need Intel TBB
+prereq intel/tbb
+
 # Set the critical ROOTSYS variable
 setenv ROOTSYS $prefix
 
