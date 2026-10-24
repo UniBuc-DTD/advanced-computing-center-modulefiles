@@ -16,6 +16,9 @@ set prefix /mnt/modules/software/tools/hep/delphes-parallel/latest
 # We need the original Delphes
 prereq tools/hep/delphes
 
+# We need the hadd tool
+prereq libraries/root
+
 # Prevent loading multiple delphes-parallel versions at once
 conflict tools/hep/delphes-parallel
 
