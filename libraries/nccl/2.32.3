@@ -1,0 +1,39 @@
+#%Module1.0
+##
+## NCCL 2.32.3 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\tSets up NCCL 2.32.3"
+}
+
+module-whatis "Sets up NCCL 2.32.3"
+
+set appname nccl
+set version 2.32.3
+set prefix "/mnt/modules/software/libraries/$appname/$version"
+
+conflict libraries/$appname
+
+# We need a specific version of CUDA
+prereq cuda/13.4.3
+
+# Update PATH (for executables)
+prepend-path PATH $prefix/bin
+
+prepend-path LIBRARY_PATH $prefix/lib
+# This is to allow programs to find libnccl.so at runtime
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Update include path (for compiling)
+prepend-path CPATH $prefix/include
+prepend-path C_INCLUDE_PATH $prefix/include
+
+# Update pkg-config path (for build systems like CMake/Meson)
+prepend-path PKG_CONFIG_PATH $prefix/lib/pkgconfig
+
+# Set convenience variables
+setenv NCCL_ROOT $prefix
+setenv NCCL_BIN $prefix/bin
+setenv NCCL_INC $prefix/include
+setenv NCCL_LIB $prefix/lib
