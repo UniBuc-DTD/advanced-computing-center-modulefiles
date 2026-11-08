@@ -1,0 +1,28 @@
+#%Module1.0
+##
+## R 4.6.2 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\t Loads R 4.6.2 built from source with optimizations."
+    puts stderr "\t Includes R libraries and dependencies."
+}
+
+module-whatis "Name: R"
+module-whatis "Version: 4.6.2"
+module-whatis "Category: programming language"
+module-whatis "Description: Language for statistical computing and graphics."
+
+set prefix /mnt/modules/software/tools/r/4.6.2
+
+# Prevent loading multiple R versions at once
+conflict tools/r
+
+# Add the binaries (R, Rscript) to PATH
+prepend-path PATH $prefix/bin
+
+# Add man pages
+prepend-path MANPATH $prefix/share/man
+
+# Add info pages
+prepend-path INFOPATH $prefix/share/info
