@@ -1,0 +1,29 @@
+#%Module1.0
+##
+## Jupyter 3.13.18 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\t Loads a Jupyter Notebook server environment for interactive batch jobs."
+    puts stderr "\t A shared read-only virtualenv built on Python 3.13.18."
+    puts stderr "\t Includes jupyter (notebook, jupyterlab, ipykernel, nbconvert, ipywidgets, jupyter-console)."
+}
+
+module-whatis "Name: Jupyter"
+module-whatis "Version: 3.13.18 (virtualenv built on Python 3.13.18)"
+module-whatis "Category: programming language"
+module-whatis "Description: Jupyter Notebook server environment."
+
+set prefix /mnt/modules/software/tools/jupyter/3.13.18
+
+# Prevent loading multiple jupyter environments at once
+conflict tools/jupyter
+
+# Load the base python this virtualenv was built with
+module load tools/python/3.13.18
+
+# Add the virtualenv binaries (python3, jupyter, pip3) to PATH
+prepend-path PATH $prefix/venv/bin
+
+# Add manual pages
+prepend-path MANPATH $prefix/venv/share/man
