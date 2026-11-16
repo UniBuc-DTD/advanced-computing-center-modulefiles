@@ -1,0 +1,41 @@
+#%Module1.0
+##
+## Python 3.13.18 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\t Loads Python 3.13.18 built from source with optimizations."
+    puts stderr "\t Includes pip, setuptools, and shared libraries."
+}
+
+module-whatis "Name: Python"
+module-whatis "Version: 3.13.18"
+module-whatis "Category: programming language"
+module-whatis "Description: High-level interpreted programming language."
+
+set prefix /mnt/modules/software/tools/python/3.13.18
+
+# Prevent loading multiple python versions at once
+conflict tools/python
+
+# 1. Add the binaries (python3, pip3) to PATH
+prepend-path PATH $prefix/bin
+
+# Update include path (for compiling)
+prepend-path CPATH $prefix/include/python3.13
+prepend-path C_INCLUDE_PATH $prefix/include/python3.13
+
+prepend-path LIBRARY_PATH $prefix/lib
+# 2. Add libraries to LD_LIBRARY_PATH
+# Critical because you built with --enable-shared.
+# Without this, 'python3' command will fail to find libpython.so.
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# 3. Add Manual pages
+prepend-path MANPATH $prefix/share/man
+
+# 4. Add pkg-config (useful if compiling other software against this Python)
+prepend-path PKG_CONFIG_PATH $prefix/lib/pkgconfig
+
+# 5. Add CMake prefix (useful if using CMake to find this Python)
+prepend-path CMAKE_PREFIX_PATH $prefix
