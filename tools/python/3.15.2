@@ -1,0 +1,39 @@
+#%Module1.0
+##
+## Python 3.15.2 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "\t Loads Python 3.15.2 built from source with optimizations."
+    puts stderr "\t Includes pip, setuptools, and shared libraries."
+}
+
+module-whatis "Name: Python"
+module-whatis "Version: 3.15.2"
+module-whatis "Category: programming language"
+module-whatis "Description: High-level interpreted programming language."
+
+set prefix /mnt/modules/software/tools/python/3.15.2
+
+# Prevent loading multiple python versions at once
+conflict tools/python
+
+# 1. Add the binaries (python3, pip3) to PATH
+prepend-path PATH $prefix/bin
+
+# Update include path (for compiling)
+prepend-path CPATH $prefix/include/python3.15
+prepend-path C_INCLUDE_PATH $prefix/include/python3.15
+
+prepend-path LIBRARY_PATH $prefix/lib
+# Add libraries to LD_LIBRARY_PATH
+prepend-path LD_LIBRARY_PATH $prefix/lib
+
+# Add Manual pages
+prepend-path MANPATH $prefix/share/man
+
+# Configure pkg-config
+prepend-path PKG_CONFIG_PATH $prefix/lib/pkgconfig
+
+# Configure CMake prefix
+prepend-path CMAKE_PREFIX_PATH $prefix
