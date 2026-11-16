@@ -18,6 +18,13 @@ set prefix /mnt/modules/software/tools/r/4.6.2
 # Prevent loading multiple R versions at once
 conflict tools/r
 
+# Runtime dependencies
+# R is linked against OpenBLAS (BLAS + LAPACK); must be loadable
+prereq libraries/blas/openblas/0.3.30
+# Optional tools used by R at runtime (PDF vignettes, markdown rendering)
+prereq --optional tools/pandoc/3.14
+prereq --optional tools/texlive/2026
+
 # Add the binaries (R, Rscript) to PATH
 prepend-path PATH $prefix/bin
 
