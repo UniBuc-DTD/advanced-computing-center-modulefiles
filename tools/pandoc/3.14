@@ -1,0 +1,22 @@
+#%Module1.0
+##
+## pandoc 3.14 Modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "Sets up environment for pandoc 3.14"
+}
+
+module-whatis "Sets up pandoc 3.14"
+
+set appname pandoc
+set version 3.14
+set prefix "/mnt/modules/software/tools/$appname/$version"
+
+conflict tools/$appname
+
+# Binaries
+prepend-path PATH $prefix/bin
+
+# Man pages
+prepend-path MANPATH $prefix/share/man
