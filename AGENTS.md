@@ -1,6 +1,6 @@
 # AGENTS.md — modulefile conventions
 
-Module definition files for Environment Modules on the University of Bucharest ACC HPC cluster.
+Module definition files for [Environment Modules](https://envmodules.io/) on the [University of Bucharest](https://unibuc.ro/?lang=en) [ACC](https://edis.unibuc.ro/data-center-si-laboratoare-de-acces/) HPC cluster.
 
 ## Structure
 
@@ -19,5 +19,5 @@ Module definition files for Environment Modules on the University of Bucharest A
 ## Verification & commits
 
 - Test with `module load <mod>/<ver>` on a node where this tree is in `MODULEPATH`, then confirm the expected binaries and variables are set.
-- Commit messages: imperative, one line ("Set up CUDA v13.4.3", "Add R language support").
-- `.gitattributes` normalizes line endings to LF and tags `libraries/`, `mpi/`, `tools/` as Tcl; keep files plain text.
+- Do not make new commits. Let the human user review and commit the changes.
+
